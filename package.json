@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "next",
+    "dev": "node server.js",
     "build": "next build",
     "start": "next start"
   },
@@ -21,6 +21,11 @@
   },
   "homepage": "https://github.com/Shopify/shopify-demo-app-node-react#readme",
   "dependencies": {
+    "@shopify/koa-shopify-auth": "^3.1.16",
+    "dotenv": "^6.2.0",
+    "isomorphic-fetch": "^2.2.1",
+    "koa": "^2.7.0",
+    "koa-session": "^5.10.1",
     "next": "^8.0.3",
     "react": "^16.8.4",
     "react-dom": "^16.8.4"
