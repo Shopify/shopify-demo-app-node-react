@@ -1,0 +1,43 @@
+{
+  "name": "shopify-demo-app-node-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shopify/shopify-demo-app-node-react.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shopify/shopify-demo-app-node-react/issues"
+  },
+  "homepage": "https://github.com/Shopify/shopify-demo-app-node-react#readme",
+  "dependencies": {
+    "@shopify/koa-shopify-auth": "^3.1.16",
+    "@shopify/koa-shopify-graphql-proxy": "^2.1.5",
+    "@shopify/koa-shopify-webhooks": "^1.1.2",
+    "@shopify/polaris": "^3.10.0",
+    "@zeit/next-css": "^1.0.1",
+    "apollo-boost": "^0.3.1",
+    "dotenv": "^6.2.0",
+    "graphql": "^14.1.1",
+    "isomorphic-fetch": "^2.2.1",
+    "js-cookie": "^2.2.0",
+    "koa": "^2.7.0",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.10.1",
+    "next": "^8.0.3",
+    "react": "^16.8.4",
+    "react-apollo": "^2.5.2",
+    "react-dom": "^16.8.4",
+    "store-js": "^2.0.4"
+  }
+}
