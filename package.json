@@ -22,8 +22,11 @@
   "homepage": "https://github.com/Shopify/shopify-demo-app-node-react#readme",
   "dependencies": {
     "@shopify/koa-shopify-auth": "^3.1.16",
+    "@shopify/polaris": "^3.10.0",
+    "@zeit/next-css": "^1.0.1",
     "dotenv": "^6.2.0",
     "isomorphic-fetch": "^2.2.1",
+    "js-cookie": "^2.2.0",
     "koa": "^2.7.0",
     "koa-session": "^5.10.1",
     "next": "^8.0.3",
