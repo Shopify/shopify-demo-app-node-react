@@ -3,6 +3,14 @@ import Head from 'next/head';
 import { AppProvider } from '@shopify/polaris';
 import '@shopify/polaris/styles.css';
 import Cookies from 'js-cookie'
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
+
+const client = new ApolloClient({
+  fetchOptions: {
+    credentials: 'include'
+  }
+});
 
 class MyApp extends App {
   state = {
@@ -21,7 +29,9 @@ class MyApp extends App {
           apiKey={API_KEY}
           forceRedirect
         >
-          <Component {...pageProps} />
+          <ApolloProvider client={client}>
+            <Component {...pageProps} />
+          </ApolloProvider>
         </AppProvider>
       </React.Fragment>
     );
