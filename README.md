@@ -10,13 +10,13 @@ You can use these starter files to skip ahead and learn a certain section or fix
 
 If you plan to skip ahead, then make sure that you first complete these setup instructions:
 
-[Install the latest stable version of Node.js.](#)
-Install npm packages (run: npm install).
-[Expose your dev environment.](#)
-[Get a Shopify API key and Shopify API secret key.](#)
-[Add the Shopify API key and Shopify API secret key.](#)
-Start your app (run: npm run dev).
-[Authenticate and test your app.](#)
-[Set up your app navigation.](#)
+1. [Install the latest stable version of Node.js.](#)
+2. Install npm packages (run: npm install).
+3. [Expose your dev environment.](#)
+4. [Get a Shopify API key and Shopify API secret key.](#)
+5. [Add the Shopify API key and Shopify API secret key.](#)
+6. Start your app (run: npm run dev).
+7. [Authenticate and test your app.](#)
+8. [Set up your app navigation.](#)
 
 Please create an issue if you have any questions or comments.
