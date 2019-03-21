@@ -2,7 +2,16 @@
 
 This repository contains the completed app and starter files for the [Build a Shopify app with Node and React](#) tutorial.
 
-The completed app is the master branch, and each starter file has its own branch. For example, To start the tutorial at [Build your user interface with Polaris](#) check out and use `build-your-user-interface-with-polaris-starter-files`.
+## Available branches for each step in the tutorial
+
+Each step of the [Build a Shopify app with Node and React](https://help.shopify.com/en/api/tutorials/build-a-shopify-app-with-node-and-react) tutorial has a corresponding branch in this repository. Checkout any of these branches to view the demo project at that stage, or to use it as the starting point for your own app. For example, To start the tutorial at [Build your user interface with Polaris](#) check out and use `build-your-user-interface-with-polaris-starter-files`.
+
+1. [Embed your app in Shopify](https://help.shopify.com/en/api/tutorials/build-a-shopify-app-with-node-and-react/embed-your-app-in-shopify): [`embed-your-app-in-shopify-starter-files`](https://github.com/Shopify/shopify-demo-app-node-react/tree/embed-your-app-in-shopify-starter-files)
+2. [Build your user interface with Polaris](https://help.shopify.com/en/api/tutorials/build-a-shopify-app-with-node-and-react/build-your-user-interface-with-polaris): [`build-your-user-interface-with-polaris-starter-files`](https://github.com/Shopify/shopify-demo-app-node-react/tree/build-your-user-interface-with-polaris-starter-files)
+3. [Fetch data with Apollo](https://help.shopify.com/en/api/tutorials/build-a-shopify-app-with-node-and-react/fetch-data-with-apollo): [`fetch-data-with-apollo-starter-files`](https://github.com/Shopify/shopify-demo-app-node-react/tree/fetch-data-with-apollo-starter-files)
+4. [Charge a fee using the Billing API](https://help.shopify.com/en/api/tutorials/build-a-shopify-app-with-node-and-react/charge-a-fee-using-the-billing-api): [`charge-a-fee-using-the-billing-api-starter-files`](https://github.com/Shopify/shopify-demo-app-node-react/tree/charge-a-fee-using-the-billing-api-starter-files)
+5. [Listen for store events with webhooks](https://help.shopify.com/en/api/tutorials/build-a-shopify-app-with-node-and-react/listen-for-store-events-with-webhooks): [`listen-for-store-events-with-webhooks-starter-files`](https://github.com/Shopify/shopify-demo-app-node-react/tree/listen-for-store-events-with-webhooks-starter-files)
+6. Completed App: [`master`](https://github.com/Shopify/shopify-demo-app-node-react/tree/master)
 
 ## Using starter files
 
