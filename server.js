@@ -7,6 +7,7 @@ const { verifyRequest } = require('@shopify/koa-shopify-auth');
 const session = require('koa-session');
 dotenv.config();
 const { default: graphQLProxy } = require('@shopify/koa-shopify-graphql-proxy');
+const { ApiVersion } = require('@shopify/koa-shopify-graphql-proxy');
 const Router = require('koa-router');
 const processPayment = require('./server/router');
 
@@ -61,15 +62,15 @@ app.prepare().then(() => {
       },
     }),
   );
-  
-  server.use(graphQLProxy());
+
+  server.use(graphQLProxy({ version: ApiVersion.April19 }));
   server.use(router.routes());
   server.use(verifyRequest());
   server.use(async (ctx) => {
-      await handle(ctx.req, ctx.res);
-      ctx.respond = false;
-      ctx.res.statusCode = 200;
-      return
+    await handle(ctx.req, ctx.res);
+    ctx.respond = false;
+    ctx.res.statusCode = 200;
+    return
   });
 
   server.listen(port, () => {
