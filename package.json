@@ -22,8 +22,8 @@
   "homepage": "https://github.com/Shopify/shopify-demo-app-node-react#readme",
   "dependencies": {
     "@shopify/koa-shopify-auth": "^3.1.16",
-    "@shopify/koa-shopify-graphql-proxy": "^2.1.5",
-    "@shopify/koa-shopify-webhooks": "^1.1.2",
+    "@shopify/koa-shopify-graphql-proxy": "^3.0.2",
+    "@shopify/koa-shopify-webhooks": "^1.1.6",
     "@shopify/polaris": "^3.10.0",
     "@zeit/next-css": "^1.0.1",
     "apollo-boost": "^0.3.1",
