@@ -16,7 +16,12 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-const { SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY, TUNNEL_URL } = process.env;
+const {
+  SHOPIFY_API_SECRET_KEY,
+  SHOPIFY_API_KEY,
+  TUNNEL_URL,
+  API_VERSION
+} = process.env;
 
 app.prepare().then(() => {
   const server = new Koa();
@@ -33,7 +38,7 @@ app.prepare().then(() => {
       scopes: ['read_products', 'write_products'],
       async afterAuth(ctx) {
         const { shop, accessToken } = ctx.session;
-        ctx.cookies.set('shopOrigin', shop, { httpOnly: false })
+        ctx.cookies.set('shopOrigin', shop, { httpOnly: false });
 
         const stringifiedBillingParams = JSON.stringify({
           recurring_application_charge: {
@@ -42,35 +47,39 @@ app.prepare().then(() => {
             return_url: TUNNEL_URL,
             test: true
           }
-        })
+        });
         const options = {
           method: 'POST',
           body: stringifiedBillingParams,
           credentials: 'include',
           headers: {
             'X-Shopify-Access-Token': accessToken,
-            'Content-Type': 'application/json',
-          },
+            'Content-Type': 'application/json'
+          }
         };
 
         const confirmationURL = await fetch(
-          `https://${shop}/admin/recurring_application_charges.json`, options)
-          .then((response) => response.json())
-          .then((jsonData) => jsonData.recurring_application_charge.confirmation_url)
-          .catch((error) => console.log('error', error));
+          `https://${shop}/admin/api/${API_VERSION}/recurring_application_charges.json`,
+          options
+        )
+          .then(response => response.json())
+          .then(
+            jsonData => jsonData.recurring_application_charge.confirmation_url
+          )
+          .catch(error => console.log('error', error));
         ctx.redirect(confirmationURL);
-      },
-    }),
+      }
+    })
   );
 
   server.use(graphQLProxy({ version: ApiVersion.April19 }));
   server.use(router.routes());
   server.use(verifyRequest());
-  server.use(async (ctx) => {
+  server.use(async ctx => {
     await handle(ctx.req, ctx.res);
     ctx.respond = false;
     ctx.res.statusCode = 200;
-    return
+    return;
   });
 
   server.listen(port, () => {
