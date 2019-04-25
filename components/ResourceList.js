@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import { 
+import {
   Card,
   ResourceList,
   Stack,
@@ -43,18 +43,18 @@ const GET_PRODUCTS_BY_ID = gql`
 class ResourceListWithProducts extends React.Component {
 
   state = {
-   item: '',
+    item: '',
   };
-    
+
   static contextTypes = {
-    polaris: PropTypes.object
+    polaris: PropTypes.object,
   };
-    
+
   redirectToProduct = () => {
     const redirect = Redirect.create(this.context.polaris.appBridge);
     redirect.dispatch(
       Redirect.Action.APP,
-      '/edit-products'
+      '/edit-products',
     );
   };
 
@@ -63,8 +63,8 @@ class ResourceListWithProducts extends React.Component {
     return (
       <Query query={GET_PRODUCTS_BY_ID} variables={{ ids: store.get('ids') }}>
         {({ data, loading, error }) => {
-          if (loading) return <div>Loading…</div>;
-          if (error) return <div>{error.message}</div>;
+          if (loading) { return <div>Loading…</div>; }
+          if (error) { return <div>{error.message}</div>; }
           console.log(data);
           return (
             <Card sectioned>
@@ -72,7 +72,7 @@ class ResourceListWithProducts extends React.Component {
                 showHeader
                 resourceName={{ singular: 'Product', plural: 'Products' }}
                 items={data.nodes}
-                renderItem={item => {
+                renderItem={(item) => {
                   const media = (
                     <Thumbnail
                       source={
@@ -94,9 +94,9 @@ class ResourceListWithProducts extends React.Component {
                       media={media}
                       accessibilityLabel={`View details for ${item.title}`}
                       onClick={() => {
-                          store.set('item', item);
-                          this.redirectToProduct();
-                        }
+                        store.set('item', item);
+                        this.redirectToProduct();
+                      }
                       }
                     >
                       <Stack>
@@ -125,5 +125,5 @@ class ResourceListWithProducts extends React.Component {
     );
   }
 }
-  
+
 export default ResourceListWithProducts;

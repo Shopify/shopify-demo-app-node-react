@@ -5,10 +5,12 @@ const { default: createShopifyAuth } = require('@shopify/koa-shopify-auth');
 const dotenv = require('dotenv');
 const { verifyRequest } = require('@shopify/koa-shopify-auth');
 const session = require('koa-session');
+
 dotenv.config();
 const { default: graphQLProxy } = require('@shopify/koa-shopify-graphql-proxy');
 const { ApiVersion } = require('@shopify/koa-shopify-graphql-proxy');
 const Router = require('koa-router');
+const { receiveWebhook, registerWebhook } = require('@shopify/koa-shopify-webhooks');
 const processPayment = require('./server/router');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
@@ -45,9 +47,23 @@ app.prepare().then(() => {
             name: 'Recurring charge',
             price: 20.01,
             return_url: TUNNEL_URL,
-            test: true
-          }
+            test: true,
+          },
         });
+
+        const registration = await registerWebhook({
+          address: `${TUNNEL_URL}/webhooks/products/create`,
+          topic: 'PRODUCTS_CREATE',
+          accessToken,
+          shop,
+        });
+
+        if (registration.success) {
+          console.log('Successfully registered webhook!');
+        } else {
+          console.log('Failed to register webhook', registration.result);
+        }
+
         const options = {
           method: 'POST',
           body: stringifiedBillingParams,
@@ -59,20 +75,31 @@ app.prepare().then(() => {
         };
 
         const confirmationURL = await fetch(
-          `https://${shop}/admin/api/${API_VERSION}/recurring_application_charges.json`,
-          options
-        )
-          .then(response => response.json())
-          .then(
-            jsonData => jsonData.recurring_application_charge.confirmation_url
-          )
-          .catch(error => console.log('error', error));
+          `hhttps://${shop}/admin/api/${API_VERSION}/recurring_application_charges.json`, options,
+)
+          .then((response) => response.json())
+          .then((jsonData) => jsonData.recurring_application_charge.confirmation_url)
+          .catch((error) => console.log('error', error));
         ctx.redirect(confirmationURL);
       }
     })
   );
 
+  const webhook = receiveWebhook({ secret: SHOPIFY_API_SECRET_KEY });
+
+  router.post('/webhooks/products/create', webhook, (ctx) => {
+    console.log('received webhook: ', ctx.state.webhook);
+  });
+
   server.use(graphQLProxy({ version: ApiVersion.April19 }));
+
+  router.get('*', verifyRequest(), async (ctx) => {
+    await handle(ctx.req, ctx.res);
+    ctx.respond = false;
+    ctx.res.statusCode = 200;
+
+  });
+  server.use(router.allowedMethods());
   server.use(router.routes());
   server.use(verifyRequest());
   server.use(async ctx => {
