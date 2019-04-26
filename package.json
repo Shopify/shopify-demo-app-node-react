@@ -14,8 +14,8 @@
     "url": "git+https://github.com/Shopify/shopify-demo-app-node-react.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Shopify",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Shopify/shopify-demo-app-node-react/issues"
   },
