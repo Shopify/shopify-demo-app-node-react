@@ -1,5 +1,7 @@
 # shopify-demo-app-node-react
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
+
 This repository contains the completed app and starter files for the [Build a Shopify app with Node and React](https://developers.shopify.com/tutorials/build-a-shopify-app-with-node-and-react) tutorial.
 
 Each step of the [Build a Shopify app with Node and React](https://developers.shopify.com/tutorials/build-a-shopify-app-with-node-and-react) tutorial has a corresponding branch in this repository. You are currently on the `fetch-data-with-apollo-starter-files` branch. Please refer to the [`master`](https://github.com/Shopify/shopify-demo-app-node-react/tree/master) branch to see all the steps.
