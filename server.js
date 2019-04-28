@@ -5,6 +5,7 @@ const { default: createShopifyAuth } = require('@shopify/koa-shopify-auth');
 const dotenv = require('dotenv');
 const { verifyRequest } = require('@shopify/koa-shopify-auth');
 const session = require('koa-session');
+
 dotenv.config();
 
 const port = parseInt(process.env.PORT, 10) || 3000;
@@ -26,18 +27,18 @@ app.prepare().then(() => {
       scopes: ['read_products'],
       afterAuth(ctx) {
         const { shop, accessToken } = ctx.session;
-        ctx.cookies.set('shopOrigin', shop, { httpOnly: false })
+        ctx.cookies.set('shopOrigin', shop, { httpOnly: false });
         ctx.redirect('/');
       },
     }),
   );
-    
+
   server.use(verifyRequest());
   server.use(async (ctx) => {
-      await handle(ctx.req, ctx.res);
-      ctx.respond = false;
-      ctx.res.statusCode = 200;
-      return
+    await handle(ctx.req, ctx.res);
+    ctx.respond = false;
+    ctx.res.statusCode = 200;
+
   });
 
   server.listen(port, () => {
