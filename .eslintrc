@@ -1,0 +1,17 @@
+{
+  "extends": "plugin:shopify/react",
+  "rules": {
+    "babel/object-curly-spacing": [1, "always"],
+    "react/react-in-jsx-scope": [0, "never"],
+    "shopify/jsx-no-hardcoded-content": [0, "never"],
+    "no-console": [0, "never"],
+    "react/jsx-fragments": [0, "never"],
+    "react/jsx-no-undef": [0, "never"],
+    "no-undef": [0, "never"],
+    "sort-class-members/sort-class-members": [0, "never"],
+    "shopify/react-prefer-private-members": [0, "never"],
+    "react/no-access-state-in-setstate": [0, "never"],
+    "react/prop-types": [0, "never"],
+    "shopify/jsx-no-complex-expressions": [0, "never"]
+  }
+}
