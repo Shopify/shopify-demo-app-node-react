@@ -46,7 +46,7 @@ class EditProduct extends React.Component {
       <Mutation
         mutation={UPDATE_PRICE}
       >
-        {(handleSubmit, {error, data}) => {
+        {(handleSubmit, { error, data }) => {
           const showError = error && (
             <Banner status="critical">{error.message}</Banner>
           );
@@ -59,11 +59,11 @@ class EditProduct extends React.Component {
           return (
             <Page>
               <Layout>
-              {showToast}
+                {showToast}
                 <Layout.Section>
                   {showError}
                 </Layout.Section>
-                <Layout.Section> 
+                <Layout.Section>
                   <DisplayText size="large">{name}</DisplayText>
                   <Form>
                     <Card sectioned>
@@ -72,7 +72,7 @@ class EditProduct extends React.Component {
                           <TextField
                             prefix="$"
                             value={price}
-                            disabled={true}
+                            disabled
                             label="Original price"
                             type="price"
                           />
@@ -100,15 +100,15 @@ class EditProduct extends React.Component {
                               price: discount,
                             };
                             handleSubmit({
-                              variables: { input: productVariableInput }
+                              variables: { input: productVariableInput },
                             });
-                          }
-                        }
+                          },
+                        },
                       ]}
                       secondaryActions={[
                         {
-                          content: 'Remove discount'
-                        }
+                          content: 'Remove discount',
+                        },
                       ]}
                     />
                   </Form>
@@ -121,8 +121,8 @@ class EditProduct extends React.Component {
     );
   }
 
-  handleChange = field => {
-    return value => this.setState({ [field]: value });
+  handleChange = (field) => {
+    return (value) => this.setState({ [field]: value });
   };
 
   itemToBeConsumed = () => {
@@ -130,7 +130,7 @@ class EditProduct extends React.Component {
     const price = item.variants.edges[0].node.price;
     const variantId = item.variants.edges[0].node.id;
     const discounter = price * 0.1;
-    this.setState({ price: price, variantId: variantId });
+    this.setState({ price, variantId });
     return (price - discounter).toFixed(2);
   };
 }

@@ -1,4 +1,5 @@
 const dotenv = require('dotenv');
+
 dotenv.config();
 
 const { API_VERSION } = process.env;
@@ -10,17 +11,17 @@ async function processPayment(ctx, next) {
       credentials: 'include',
       headers: {
         'X-Shopify-Access-Token': ctx.session.accessToken,
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     };
     const optionsWithGet = { ...options, method: 'GET' };
     const optionsWithPost = { ...options, method: 'POST' };
     fetch(
       `https://${ctx.session.shop}/${chargeUrl}/${ctx.query.charge_id}.json`,
-      optionsWithGet
+      optionsWithGet,
     )
-      .then(response => response.json())
-      .then(myJson => {
+      .then((response) => response.json())
+      .then((myJson) => {
         if (myJson.recurring_application_charge.status === 'accepted') {
           const stringifyMyJSON = JSON.stringify(myJson);
           const optionsWithJSON = { ...optionsWithPost, body: stringifyMyJSON };
@@ -28,11 +29,11 @@ async function processPayment(ctx, next) {
             `https://${ctx.session.shop}/${chargeUrl}/${
               ctx.query.charge_id
             }/activate.json`,
-            optionsWithJSON
+            optionsWithJSON,
           )
-            .then(response => response.json())
-            .catch(error => console.log('error', error));
-        } else return ctx.redirect('/');
+            .then((response) => response.json())
+            .catch((error) => console.log('error', error));
+        } else { return ctx.redirect('/'); }
       });
 
     return ctx.redirect('/');

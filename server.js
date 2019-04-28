@@ -5,6 +5,7 @@ const { default: createShopifyAuth } = require('@shopify/koa-shopify-auth');
 const dotenv = require('dotenv');
 const { verifyRequest } = require('@shopify/koa-shopify-auth');
 const session = require('koa-session');
+
 dotenv.config();
 const { default: graphQLProxy } = require('@shopify/koa-shopify-graphql-proxy');
 const { ApiVersion } = require('@shopify/koa-shopify-graphql-proxy');
@@ -20,7 +21,7 @@ const {
   SHOPIFY_API_SECRET_KEY,
   SHOPIFY_API_KEY,
   TUNNEL_URL,
-  API_VERSION
+  API_VERSION,
 } = process.env;
 
 app.prepare().then(() => {
@@ -45,8 +46,8 @@ app.prepare().then(() => {
             name: 'Recurring charge',
             price: 20.01,
             return_url: TUNNEL_URL,
-            test: true
-          }
+            test: true,
+          },
         });
         const options = {
           method: 'POST',
@@ -54,32 +55,32 @@ app.prepare().then(() => {
           credentials: 'include',
           headers: {
             'X-Shopify-Access-Token': accessToken,
-            'Content-Type': 'application/json'
-          }
+            'Content-Type': 'application/json',
+          },
         };
 
         const confirmationURL = await fetch(
           `https://${shop}/admin/api/${API_VERSION}/recurring_application_charges.json`,
-          options
+          options,
         )
-          .then(response => response.json())
+          .then((response) => response.json())
           .then(
-            jsonData => jsonData.recurring_application_charge.confirmation_url
+            (jsonData) => jsonData.recurring_application_charge.confirmation_url,
           )
-          .catch(error => console.log('error', error));
+          .catch((error) => console.log('error', error));
         ctx.redirect(confirmationURL);
-      }
-    })
+      },
+    }),
   );
 
   server.use(graphQLProxy({ version: ApiVersion.April19 }));
   server.use(router.routes());
   server.use(verifyRequest());
-  server.use(async ctx => {
+  server.use(async (ctx) => {
     await handle(ctx.req, ctx.res);
     ctx.respond = false;
     ctx.res.statusCode = 200;
-    return;
+
   });
 
   server.listen(port, () => {
