@@ -24,15 +24,10 @@ async function processPayment(ctx, next) {
         if (myJson.recurring_application_charge.status === 'accepted') {
           const stringifyMyJSON = JSON.stringify(myJson);
           const optionsWithJSON = { ...optionsWithPost, body: stringifyMyJSON };
-          fetch(
-            `https://${ctx.session.shop}/${chargeUrl}/${
-              ctx.query.charge_id
-            }/activate.json`,
-            optionsWithJSON
-          )
-            .then(response => response.json())
-            .catch(error => console.log('error', error));
-        } else return ctx.redirect('/');
+          fetch(`https://${ctx.session.shop}/${chargeUrl}/${ctx.query.charge_id}/activate.json`, optionsWithJSON)
+            .then((response) => response.json())
+            .catch((error) => console.log('error', error));
+        } else { return ctx.redirect('/'); }
       });
 
     return ctx.redirect('/');
