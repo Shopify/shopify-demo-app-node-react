@@ -85,8 +85,7 @@ class EditProduct extends React.Component {
                           />
                         </FormLayout.Group>
                         <p>
-                          This sale price will expire in two weeks on{' '}
-                          {this.props.expires}
+                          This sale price will expire in two weeks
                         </p>
                       </FormLayout>
                     </Card>
