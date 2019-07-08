@@ -33,7 +33,6 @@ class EditProduct extends React.Component {
     discount: '',
     price: '',
     variantId: '',
-    showToast: false,
   };
 
   componentDidMount() {
@@ -53,7 +52,6 @@ class EditProduct extends React.Component {
           const showToast = data && data.productVariantUpdate && (
             <Toast
               content="Sucessfully updated"
-              onDismiss={() => this.setState({ showToast: false })}
             />
           );
           return (
