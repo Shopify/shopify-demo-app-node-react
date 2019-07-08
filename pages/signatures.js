@@ -1,88 +1,87 @@
-import {
-    Button,
-    Card,
-    Form,
-    FormLayout,
-    Layout,
-    Page,
-    SettingToggle,
-    Stack,
-    TextField,
-    TextStyle,
-  } from '@shopify/polaris';
+import { Page } from '@shopify/polaris';
 
 class Signatures extends React.Component {
-  state = {
-    discount: '10%',
-    enabled: false,
-  };
-
   render() {
-    const { discount, enabled } = this.state;
-    const contentStatus = enabled ? 'Disable' : 'Enable';
-    const textStatus = enabled ? 'enabled' : 'disabled';
-
     return (
       <Page>
-        <Layout>
-          <Layout.AnnotatedSection
-            title="Default discount"
-            description="Add a product to Sample App, it will automatically be discounted."
-          >
-            <Card sectioned>
-              <Form onSubmit={this.handleSubmit}>
-                <FormLayout>
-                  <TextField
-                    value={discount}
-                    onChange={this.handleChange('discount')}
-                    label="Discount percentage"
-                    type="discount"
-                  />
-                  <Stack distribution="trailing">
-                    <Button primary submit>
-                    Save
-                    </Button>
-                  </Stack>
-                </FormLayout>
-              </Form>
-            </Card>
-          </Layout.AnnotatedSection>
-          <Layout.AnnotatedSection
-            title="Price updates"
-            description="Temporarily disable all Sample App price updates"
-          >
-            <SettingToggle
-              action={{
-                content: contentStatus,
-                onAction: this.handleToggle,
-              }}
-              enabled={enabled}
-            >
-            This setting is{' '}
-              <TextStyle variation="strong">{textStatus}</TextStyle>.
-            </SettingToggle>
-          </Layout.AnnotatedSection>
-        </Layout>
+        <div class="Polaris-Page Polaris-Page--singleColumn">
+
+          <div class="Polaris-Page-Header Polaris-Page-Header--separator">
+            <div class="Polaris-Page-Header__MainContent">
+              <div class="Polaris-Page-Header__TitleActionMenuWrapper">
+                <div class="Polaris-Page-Header__Title">
+                  <div>
+                    <h1 class="Polaris-DisplayText Polaris-DisplayText--sizeLarge">Signatures</h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="Polaris-Page__Content">
+            <div class="Polaris-Card">
+              <div class="Polaris-Card__Header">
+                <h2 class="Polaris-Heading">Enter Your Signature</h2>
+              </div>
+              <div class="Polaris-Card__Section">
+                <div id="sketchpadapp">
+
+                  <div class="leftside" id="leftside">
+                    Works on iOS, Android and desktop/laptop touchscreens using
+                    Chrome/Firefox/Safari.<br /><br />
+                    <input
+                      htmlFor="foo"
+                      type="submit" value="Clear Sketchpad" id="clearbutton"
+                      onclick="clearCanvas(canvas,ctx);"
+                    />
+                  </div>
+                  <div class="rightside">
+
+                    <canvas id="sketchpad" height="300" width="400" />
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="Polaris-PageActions">
+              <div class="Polaris-Stack Polaris-Stack--spacingTight Polaris-Stack--distributionEqualSpacing">
+                <div class="Polaris-Stack__Item">
+                  <div class="Polaris-ButtonGroup">
+                    <div class="Polaris-ButtonGroup__Item">
+                      <button type="button" class="Polaris-Button" id="ClearButton" onclick="clearCanvas(canvas,ctx);">
+                        <span
+                          class="Polaris-Button__Content"
+                        >
+                          <span
+                            class="Polaris-Button__Text"
+                          >Clear Sketchpad
+                          </span>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="Polaris-Stack__Item">
+                  <button
+                    type="button" id="SaveButton" onclick="saveSignature()"
+                    class="Polaris-Button Polaris-Button--primary Polaris-Button--disabled" disabled="true"
+                  >
+                    <span class="Polaris-Button__Content">
+                      <span class="Polaris-Button__Text">
+                        Save
+                      </span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </Page>
     );
   }
-
-  handleSubmit = () => {
-    this.setState({
-      discount: this.state.discount,
-    });
-    console.log('submission', this.state);
-  };
-
-  handleChange = (field) => {
-    return (value) => this.setState({ [field]: value });
-  };
-
-  handleToggle = () => {
-    this.setState(({ enabled }) => {
-      return { enabled: !enabled };
-    });
-  };
 }
 
 export default Signatures;
