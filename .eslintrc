@@ -14,7 +14,9 @@
     "react/prop-types": [0, "never"],
     "shopify/jsx-no-complex-expressions": [0, "never"],
     "react/prefer-stateless-function": [0, "never"],
-    "jsx-a11y/control-has-associated-label": [0, "never"]
-
+    "jsx-a11y/control-has-associated-label": [0, "never"],
+    "babel/camelcase": [0, "never"],
+    "id-length": [0, "never"],
+    "line-comment-position": [0, "never"]
   }
 }

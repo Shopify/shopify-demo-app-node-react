@@ -1,0 +1,30 @@
+/* Some CSS styling for drawing */
+#sketchpadapp {
+    /* Prevent nearby text being highlighted when accidentally dragging mouse outside confines of the canvas */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .leftside {
+     float:left; 
+     width:400px;
+     height:100px; 
+  /*     background-color:#def; */
+    padding:10px;
+    border-radius:4px;
+  }
+  .rightside {
+     float:left;
+    margin-left:10px;
+  }
+  #sketchpad {
+    float:left;
+    height:300px;
+    width:400px;
+    border:2px solid #888;
+    border-radius:4px;
+    position:relative; /* Necessary for correct mouse co-ords in Firefox */
+  }
