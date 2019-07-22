@@ -40,6 +40,7 @@ app.prepare().then(() => {
       scopes: ['read_products', 'write_products'],
       async afterAuth(ctx) {
         const { shop, accessToken } = ctx.session;
+        ctx.cookies.set("shopOrigin", shop, { httpOnly: false });
         const stringifiedBillingParams = JSON.stringify({
           recurring_application_charge: {
             name: 'Recurring charge',
