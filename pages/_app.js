@@ -6,13 +6,8 @@ import Cookies from "js-cookie";
 import '@shopify/polaris/styles.css';
 
 class MyApp extends App {
-  static async getInitialProps(server) {
-    const shopOrigin = server.ctx.query.shop;
-    return { shopOrigin };
-  }
-
   render() {
-    const { Component, pageProps, shopOrigin } = this.props;
+    const { Component, pageProps } = this.props;
     const config = { apiKey: API_KEY, shopOrigin: Cookies.get("shopOrigin"), forceRedirect: true };
 
     return (
