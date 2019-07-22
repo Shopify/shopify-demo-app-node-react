@@ -1,4 +1,5 @@
-import { EmptyState, Layout, Page, ResourcePicker } from '@shopify/polaris';
+import { EmptyState, Layout, Page } from '@shopify/polaris';
+import { ResourcePicker } from '@shopify/app-bridge-react';
 import store from 'store-js';
 import ResourceListWithProducts from '../components/ResourceList';
 
@@ -35,9 +36,9 @@ class Index extends React.Component {
               <p>Select products to change their price temporarily.</p>
             </EmptyState>
           </Layout>
-      ) : (
-        <ResourceListWithProducts />
-      )}
+        ) : (
+            <ResourceListWithProducts />
+          )}
       </Page>
     );
   }
