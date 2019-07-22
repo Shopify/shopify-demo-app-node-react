@@ -40,8 +40,6 @@ app.prepare().then(() => {
       scopes: ['read_products', 'write_products'],
       async afterAuth(ctx) {
         const { shop, accessToken } = ctx.session;
-        ctx.cookies.set('shopOrigin', shop, { httpOnly: false });
-
         const stringifiedBillingParams = JSON.stringify({
           recurring_application_charge: {
             name: 'Recurring charge',
@@ -76,7 +74,7 @@ app.prepare().then(() => {
 
         const confirmationURL = await fetch(
           `https://${shop}/admin/api/${API_VERSION}/recurring_application_charges.json`, options,
-)
+        )
           .then((response) => response.json())
           .then((jsonData) => jsonData.recurring_application_charge.confirmation_url)
           .catch((error) => console.log('error', error));
