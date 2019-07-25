@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { AppProvider } from '@shopify/polaris';
 import { Provider } from '@shopify/app-bridge-react';
 import '@shopify/polaris/styles.css';
-import Cookies from 'js-cookies';
+import Cookies from 'js-cookie';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
