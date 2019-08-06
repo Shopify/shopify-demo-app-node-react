@@ -1,17 +1,16 @@
 require('isomorphic-fetch');
+const dotenv = require('dotenv');
+dotenv.config();
 const Koa = require('koa');
 const next = require('next');
 const { default: createShopifyAuth } = require('@shopify/koa-shopify-auth');
-const dotenv = require('dotenv');
 const { verifyRequest } = require('@shopify/koa-shopify-auth');
 const session = require('koa-session');
-
-dotenv.config();
 const { default: graphQLProxy } = require('@shopify/koa-shopify-graphql-proxy');
 const { ApiVersion } = require('@shopify/koa-shopify-graphql-proxy');
 const Router = require('koa-router');
 const { receiveWebhook, registerWebhook } = require('@shopify/koa-shopify-webhooks');
-const processPayment = require('./server/router');
+const getSubscriptionUrl = require('./server/getSubscriptionUrl');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
@@ -21,8 +20,7 @@ const handle = app.getRequestHandler();
 const {
   SHOPIFY_API_SECRET_KEY,
   SHOPIFY_API_KEY,
-  TUNNEL_URL,
-  API_VERSION
+  HOST,
 } = process.env;
 
 app.prepare().then(() => {
@@ -30,8 +28,6 @@ app.prepare().then(() => {
   const router = new Router();
   server.use(session(server));
   server.keys = [SHOPIFY_API_SECRET_KEY];
-
-  router.get('/', processPayment);
 
   server.use(
     createShopifyAuth({
@@ -41,17 +37,9 @@ app.prepare().then(() => {
       async afterAuth(ctx) {
         const { shop, accessToken } = ctx.session;
         ctx.cookies.set("shopOrigin", shop, { httpOnly: false });
-        const stringifiedBillingParams = JSON.stringify({
-          recurring_application_charge: {
-            name: 'Recurring charge',
-            price: 20.01,
-            return_url: TUNNEL_URL,
-            test: true,
-          },
-        });
 
         const registration = await registerWebhook({
-          address: `${TUNNEL_URL}/webhooks/products/create`,
+          address: `${HOST}/webhooks/products/create`,
           topic: 'PRODUCTS_CREATE',
           accessToken,
           shop,
@@ -62,24 +50,7 @@ app.prepare().then(() => {
         } else {
           console.log('Failed to register webhook', registration.result);
         }
-
-        const options = {
-          method: 'POST',
-          body: stringifiedBillingParams,
-          credentials: 'include',
-          headers: {
-            'X-Shopify-Access-Token': accessToken,
-            'Content-Type': 'application/json'
-          }
-        };
-
-        const confirmationURL = await fetch(
-          `https://${shop}/admin/api/${API_VERSION}/recurring_application_charges.json`, options,
-        )
-          .then((response) => response.json())
-          .then((jsonData) => jsonData.recurring_application_charge.confirmation_url)
-          .catch((error) => console.log('error', error));
-        ctx.redirect(confirmationURL);
+        await getSubscriptionUrl(ctx, accessToken);
       }
     })
   );
