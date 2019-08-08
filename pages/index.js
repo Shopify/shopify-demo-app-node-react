@@ -1,5 +1,5 @@
 import { EmptyState, Layout, Page } from '@shopify/polaris';
-import { ResourcePicker } from '@shopify/app-bridge-react';
+import { ResourcePicker, TitleBar } from '@shopify/app-bridge-react';
 import store from 'store-js';
 import ResourceListWithProducts from '../components/ResourceList';
 
@@ -10,12 +10,11 @@ class Index extends React.Component {
   render() {
     const emptyState = !store.get('ids');
     return (
-      <Page
-        primaryAction={{
+      <Page>
+        <TitleBar primaryAction={{
           content: 'Select products',
           onAction: () => this.setState({ open: true }),
-        }}
-      >
+        }} />
         <ResourcePicker
           resourceType="Product"
           showVariants={false}
