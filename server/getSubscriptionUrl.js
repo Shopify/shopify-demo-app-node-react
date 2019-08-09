@@ -1,4 +1,4 @@
-const getSubscriptionUrl = async (ctx, accessToken) => {
+const getSubscriptionUrl = async (ctx, accessToken, shop) => {
   const query = JSON.stringify({
     query: `mutation {
       appSubscriptionCreate(
@@ -35,7 +35,7 @@ const getSubscriptionUrl = async (ctx, accessToken) => {
     }`
   });
 
-  const response = await fetch('https://webpackstore.myshopify.com/admin/api/2019-07/graphql.json', {
+  const response = await fetch(`https://${shop}/admin/api/2019-07/graphql.json`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

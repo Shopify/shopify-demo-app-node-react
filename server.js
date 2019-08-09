@@ -50,7 +50,7 @@ app.prepare().then(() => {
         } else {
           console.log('Failed to register webhook', registration.result);
         }
-        await getSubscriptionUrl(ctx, accessToken);
+        await getSubscriptionUrl(ctx, accessToken, shop);
       }
     })
   );
