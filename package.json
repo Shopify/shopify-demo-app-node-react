@@ -21,8 +21,8 @@
   },
   "homepage": "https://github.com/Shopify/shopify-demo-app-node-react#readme",
   "dependencies": {
-    "next": "^8.0.3",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4"
+    "next": "^8.1.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
   }
 }
