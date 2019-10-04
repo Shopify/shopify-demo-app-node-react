@@ -21,6 +21,7 @@ const {
   SHOPIFY_API_SECRET_KEY,
   SHOPIFY_API_KEY,
   HOST,
+  API_VERSION
 } = process.env;
 
 app.prepare().then(() => {
@@ -43,6 +44,7 @@ app.prepare().then(() => {
           topic: 'PRODUCTS_CREATE',
           accessToken,
           shop,
+          apiVersion: API_VERSION
         });
 
         if (registration.success) {
