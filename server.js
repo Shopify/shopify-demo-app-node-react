@@ -43,6 +43,7 @@ app.prepare().then(() => {
           topic: 'PRODUCTS_CREATE',
           accessToken,
           shop,
+          apiVersion: ApiVersion.October19
         });
 
         if (registration.success) {
