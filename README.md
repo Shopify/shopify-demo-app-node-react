@@ -15,6 +15,6 @@ If you plan to use this completed app, then make sure that you first complete th
 6. Start your app (run: npm run dev).
 7. [Authenticate and test your app.](https://developers.shopify.com/tutorials/build-a-shopify-app-with-node-and-react/embed-your-app-in-shopify#authenticate-and-test)
 8. [Set up your app navigation.](https://developers.shopify.com/tutorials/build-a-shopify-app-with-node-and-react/build-your-user-interface-with-polaris#set-up-your-app-navigation)
-9. [Add your ngrok url as Host.] (https://developers.shopify.com/tutorials/build-a-shopify-app-with-node-and-react/charge-a-fee-using-the-billing-api#set-up)
+9. [Add your ngrok url as Host.](https://developers.shopify.com/tutorials/build-a-shopify-app-with-node-and-react/charge-a-fee-using-the-billing-api#set-up)
 
 Please create an issue if you have any questions or comments.
