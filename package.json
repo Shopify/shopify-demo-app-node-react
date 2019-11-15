@@ -22,7 +22,7 @@
   "homepage": "https://github.com/Shopify/shopify-demo-app-node-react#readme",
   "dependencies": {
     "@shopify/app-bridge": "^1.6.8",
-    "@shopify/app-bridge-react": "^1.6.8",
+    "@shopify/app-bridge-react": "^1.11.0",
     "@shopify/koa-shopify-auth": "^3.1.42",
     "@shopify/koa-shopify-graphql-proxy": "^3.1.2",
     "@shopify/koa-shopify-webhooks": "^2.2.0",
@@ -34,7 +34,7 @@
     "graphql-tag": "^2.10.1",
     "isomorphic-fetch": "^2.2.1",
     "js-cookie": "^2.2.1",
-    "koa": "^2.8.2",
+    "koa": "^2.11.0",
     "koa-router": "^7.4.0",
     "koa-session": "^5.12.3",
     "next": "^8.1.0",
