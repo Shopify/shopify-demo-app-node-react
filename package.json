@@ -24,7 +24,7 @@
     "@shopify/app-bridge": "^1.13.1",
     "@shopify/app-bridge-react": "^1.13.1",
     "@shopify/koa-shopify-auth": "^3.1.53",
-    "@shopify/koa-shopify-graphql-proxy": "^3.2.3",
+    "@shopify/koa-shopify-graphql-proxy": "^3.2.4",
     "@shopify/koa-shopify-webhooks": "^2.2.3",
     "@shopify/polaris": "^4.10.2",
     "@zeit/next-css": "^1.0.1",
