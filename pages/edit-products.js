@@ -4,6 +4,7 @@ import {
   DisplayText,
   Form,
   FormLayout,
+  Frame,
   Layout,
   Page,
   PageActions,
@@ -57,63 +58,65 @@ class EditProduct extends React.Component {
             />
           );
           return (
-            <Page>
-              <Layout>
-                {showToast}
-                <Layout.Section>
-                  {showError}
-                </Layout.Section>
-                <Layout.Section>
-                  <DisplayText size="large">{name}</DisplayText>
-                  <Form>
-                    <Card sectioned>
-                      <FormLayout>
-                        <FormLayout.Group>
-                          <TextField
-                            prefix="$"
-                            value={price}
-                            disabled
-                            label="Original price"
-                            type="price"
-                          />
-                          <TextField
-                            prefix="$"
-                            value={discount}
-                            onChange={this.handleChange('discount')}
-                            label="Discounted price"
-                            type="discount"
-                          />
-                        </FormLayout.Group>
-                        <p>
-                          This sale price will expire in two weeks
+            <Frame>
+              <Page>
+                <Layout>
+                  {showToast}
+                  <Layout.Section>
+                    {showError}
+                  </Layout.Section>
+                  <Layout.Section>
+                    <DisplayText size="large">{name}</DisplayText>
+                    <Form>
+                      <Card sectioned>
+                        <FormLayout>
+                          <FormLayout.Group>
+                            <TextField
+                              prefix="$"
+                              value={price}
+                              disabled
+                              label="Original price"
+                              type="price"
+                            />
+                            <TextField
+                              prefix="$"
+                              value={discount}
+                              onChange={this.handleChange('discount')}
+                              label="Discounted price"
+                              type="discount"
+                            />
+                          </FormLayout.Group>
+                          <p>
+                            This sale price will expire in two weeks
                         </p>
-                      </FormLayout>
-                    </Card>
-                    <PageActions
-                      primaryAction={[
-                        {
-                          content: 'Save',
-                          onAction: () => {
-                            const productVariableInput = {
-                              id: variantId,
-                              price: discount,
-                            };
-                            handleSubmit({
-                              variables: { input: productVariableInput },
-                            });
+                        </FormLayout>
+                      </Card>
+                      <PageActions
+                        primaryAction={[
+                          {
+                            content: 'Save',
+                            onAction: () => {
+                              const productVariableInput = {
+                                id: variantId,
+                                price: discount,
+                              };
+                              handleSubmit({
+                                variables: { input: productVariableInput },
+                              });
+                            },
                           },
-                        },
-                      ]}
-                      secondaryActions={[
-                        {
-                          content: 'Remove discount',
-                        },
-                      ]}
-                    />
-                  </Form>
-                </Layout.Section>
-              </Layout>
-            </Page>
+                        ]}
+                        secondaryActions={[
+                          {
+                            content: 'Remove discount',
+                          },
+                        ]}
+                      />
+                    </Form>
+                  </Layout.Section>
+                </Layout>
+              </Page>
+            </Frame>
           );
         }}
       </Mutation>
