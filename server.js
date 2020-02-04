@@ -26,7 +26,7 @@ const {
 app.prepare().then(() => {
   const server = new Koa();
   const router = new Router();
-  server.use(session(server));
+  server.use(session({ sameSite: 'none', secure: true }, server));
   server.keys = [SHOPIFY_API_SECRET_KEY];
 
   server.use(
@@ -36,8 +36,11 @@ app.prepare().then(() => {
       scopes: ['read_products', 'write_products'],
       async afterAuth(ctx) {
         const { shop, accessToken } = ctx.session;
-        ctx.cookies.set("shopOrigin", shop, { httpOnly: false });
-
+        ctx.cookies.set("shopOrigin", shop, {
+          httpOnly: false,
+          secure: true,
+          sameSite: 'none'
+        });
         const registration = await registerWebhook({
           address: `${HOST}/webhooks/products/create`,
           topic: 'PRODUCTS_CREATE',
