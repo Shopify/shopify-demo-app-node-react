@@ -31,7 +31,7 @@
     "apollo-boost": "^0.4.7",
     "dotenv": "^8.2.0",
     "graphql": "^14.6.0",
-    "graphql-tag": "^2.10.2",
+    "graphql-tag": "^2.10.3",
     "isomorphic-fetch": "^2.2.1",
     "js-cookie": "^2.2.1",
     "koa": "^2.11.0",
