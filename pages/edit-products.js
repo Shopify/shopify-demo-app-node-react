@@ -10,7 +10,6 @@ import {
   PageActions,
   TextField,
   Toast,
-  Frame,
 } from '@shopify/polaris';
 import store from 'store-js';
 import gql from 'graphql-tag';
