@@ -32,7 +32,7 @@
     "graphql": "^14.5.7",
     "graphql-tag": "^2.10.1",
     "isomorphic-fetch": "^2.2.1",
-    "js-cookies": "^1.0.4",
+    "js-cookie": "^1.0.4",
     "koa": "^2.8.1",
     "koa-session": "^5.12.3",
     "next": "^8.1.0",
