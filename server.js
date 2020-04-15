@@ -29,35 +29,35 @@ app.prepare().then(() => {
   server.use(session({ sameSite: 'none', secure: true }, server));
   server.keys = [SHOPIFY_API_SECRET_KEY];
 
-  server.use(
-    createShopifyAuth({
-      apiKey: SHOPIFY_API_KEY,
-      secret: SHOPIFY_API_SECRET_KEY,
-      scopes: ['read_products', 'write_products'],
-      async afterAuth(ctx) {
-        const { shop, accessToken } = ctx.session;
-        ctx.cookies.set("shopOrigin", shop, {
-          httpOnly: false,
-          secure: true,
-          sameSite: 'none'
-        });
-        const registration = await registerWebhook({
-          address: `${HOST}/webhooks/products/create`,
-          topic: 'PRODUCTS_CREATE',
-          accessToken,
-          shop,
-          apiVersion: ApiVersion.October19
-        });
+  // server.use(
+  //   createShopifyAuth({
+  //     apiKey: SHOPIFY_API_KEY,
+  //     secret: SHOPIFY_API_SECRET_KEY,
+  //     scopes: ['read_products', 'write_products'],
+  //     async afterAuth(ctx) {
+  //       const { shop, accessToken } = ctx.session;
+  //       ctx.cookies.set("shopOrigin", shop, {
+  //         httpOnly: false,
+  //         secure: true,
+  //         sameSite: 'none'
+  //       });
+  //       const registration = await registerWebhook({
+  //         address: `${HOST}/webhooks/products/create`,
+  //         topic: 'PRODUCTS_CREATE',
+  //         accessToken,
+  //         shop,
+  //         apiVersion: ApiVersion.October19
+  //       });
 
-        if (registration.success) {
-          console.log('Successfully registered webhook!');
-        } else {
-          console.log('Failed to register webhook', registration.result);
-        }
-        await getSubscriptionUrl(ctx, accessToken, shop);
-      }
-    })
-  );
+  //       if (registration.success) {
+  //         console.log('Successfully registered webhook!');
+  //       } else {
+  //         console.log('Failed to register webhook', registration.result);
+  //       }
+  //       await getSubscriptionUrl(ctx, accessToken, shop);
+  //     }
+  //   })
+  // );
 
   const webhook = receiveWebhook({ secret: SHOPIFY_API_SECRET_KEY });
 
@@ -67,7 +67,7 @@ app.prepare().then(() => {
 
   server.use(graphQLProxy({ version: ApiVersion.April19 }));
 
-  router.get('*', verifyRequest(), async (ctx) => {
+  router.get('*', /*verifyRequest(),*/ async (ctx) => {
     await handle(ctx.req, ctx.res);
     ctx.respond = false;
     ctx.res.statusCode = 200;
