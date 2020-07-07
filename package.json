@@ -23,7 +23,7 @@
   "dependencies": {
     "@shopify/app-bridge": "^1.20.0",
     "@shopify/app-bridge-react": "^1.20.0",
-    "@shopify/koa-shopify-auth": "^3.1.61",
+    "@shopify/koa-shopify-auth": "^3.1.65",
     "@shopify/koa-shopify-graphql-proxy": "^4.0.0",
     "@shopify/koa-shopify-webhooks": "^2.4.1",
     "@shopify/polaris": "^4.16.1",
