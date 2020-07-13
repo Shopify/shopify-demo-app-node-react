@@ -30,7 +30,7 @@
     "@zeit/next-css": "^1.0.1",
     "apollo-boost": "^0.4.7",
     "dotenv": "^8.2.0",
-    "graphql": "^14.6.0",
+    "graphql": "^14.7.0",
     "graphql-tag": "^2.10.3",
     "isomorphic-fetch": "^2.2.1",
     "js-cookie": "^2.2.1",
