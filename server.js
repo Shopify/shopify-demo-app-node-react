@@ -46,7 +46,7 @@ app.prepare().then(() => {
           topic: 'PRODUCTS_CREATE',
           accessToken,
           shop,
-          apiVersion: ApiVersion.October19
+          apiVersion: ApiVersion.July20
         });
 
         if (registration.success) {
@@ -65,7 +65,7 @@ app.prepare().then(() => {
     console.log('received webhook: ', ctx.state.webhook);
   });
 
-  server.use(graphQLProxy({ version: ApiVersion.April19 }));
+  server.use(graphQLProxy({ version: ApiVersion.July20 }));
 
   router.get('*', verifyRequest(), async (ctx) => {
     await handle(ctx.req, ctx.res);
