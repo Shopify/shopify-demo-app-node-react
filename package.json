@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/Shopify/shopify-demo-app-node-react#readme",
   "dependencies": {
-    "@shopify/app-bridge": "^1.25.0",
+    "@shopify/app-bridge": "^1.27.2",
     "@shopify/app-bridge-react": "^1.27.2",
     "@shopify/koa-shopify-auth": "^3.1.70",
     "@shopify/koa-shopify-graphql-proxy": "^4.0.0",
@@ -36,7 +36,7 @@
     "js-cookie": "^2.2.1",
     "koa": "^2.13.0",
     "koa-router": "^9.4.0",
-    "koa-session": "^5.13.1",
+    "koa-session": "^6.0.0",
     "next": "^8.1.0",
     "react": "^16.13.1",
     "react-apollo": "^3.1.3",
