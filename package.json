@@ -26,7 +26,7 @@
     "@shopify/koa-shopify-auth": "^3.1.70",
     "@shopify/koa-shopify-graphql-proxy": "^4.0.2",
     "@shopify/koa-shopify-webhooks": "^2.5.1",
-    "@shopify/polaris": "^5.3.1",
+    "@shopify/polaris": "^5.4.0",
     "@zeit/next-css": "^1.0.1",
     "apollo-boost": "^0.4.7",
     "dotenv": "^8.2.0",
