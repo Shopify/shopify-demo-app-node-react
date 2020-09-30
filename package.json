@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "eslint": "^5.16.0",
-    "eslint-plugin-react": "^7.21.0",
+    "eslint-plugin-react": "^7.21.2",
     "eslint-plugin-shopify": "^27.0.1"
   }
 }
