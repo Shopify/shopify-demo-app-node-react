@@ -11,7 +11,9 @@ class Index extends React.Component {
     const emptyState = !store.get('ids');
     return (
       <Page>
-        <TitleBar primaryAction={{
+        <TitleBar
+          title="Sample App"
+          primaryAction={{
           content: 'Select products',
           onAction: () => this.setState({ open: true }),
         }} />

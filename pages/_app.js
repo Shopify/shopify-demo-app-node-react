@@ -3,10 +3,11 @@ import Head from 'next/head';
 import { AppProvider } from '@shopify/polaris';
 import { Provider } from '@shopify/app-bridge-react';
 import Cookies from "js-cookie";
-import '@shopify/polaris/styles.css';
+import '@shopify/polaris/dist/styles.css';
 import translations from '@shopify/polaris/locales/en.json';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
+import ClientRouter from '../components/ClientRouter';
 
 const client = new ApolloClient({
   fetchOptions: {
@@ -26,6 +27,7 @@ class MyApp extends App {
           <meta charSet="utf-8" />
         </Head>
         <Provider config={config}>
+          <ClientRouter />
           <AppProvider i18n={translations}>
             <ApolloProvider client={client}>
               <Component {...pageProps} />
