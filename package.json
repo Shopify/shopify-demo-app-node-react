@@ -32,7 +32,7 @@
     "dotenv": "^8.2.0",
     "graphql": "^14.7.0",
     "graphql-tag": "^2.10.3",
-    "isomorphic-fetch": "^2.2.1",
+    "isomorphic-fetch": "^3.0.0",
     "js-cookie": "^2.2.1",
     "koa": "^2.13.0",
     "koa-router": "^9.4.0",
