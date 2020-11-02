@@ -22,7 +22,7 @@
   "homepage": "https://github.com/Shopify/shopify-demo-app-node-react#readme",
   "dependencies": {
     "@shopify/app-bridge": "^1.28.0",
-    "@shopify/app-bridge-react": "^1.27.2",
+    "@shopify/app-bridge-react": "^1.28.0",
     "@shopify/koa-shopify-auth": "^3.1.72",
     "@shopify/koa-shopify-graphql-proxy": "^4.0.4",
     "@shopify/koa-shopify-webhooks": "^2.5.2",
