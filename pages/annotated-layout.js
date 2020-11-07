@@ -10,6 +10,8 @@ import {
   TextField,
   TextStyle,
 } from '@shopify/polaris';
+import React from 'react'; //else will throw React not defined
+
 
 class AnnotatedLayout extends React.Component {
   state = {
