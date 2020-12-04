@@ -26,13 +26,10 @@ app.prepare().then(() => {
       secret: SHOPIFY_API_SECRET_KEY,
       scopes: ['read_products'],
       afterAuth(ctx) {
-        const { shop, accessToken } = ctx.session;
-        ctx.cookies.set("shopOrigin", shop, {
-          httpOnly: false,
-          secure: true,
-          sameSite: 'none'
-        });
-        ctx.redirect('/');
+        const urlParams = new URLSearchParams(ctx.request.url);
+        const shop = urlParams.get('shop');
+
+        ctx.redirect(`/?shop=${shop}`);
       },
     }),
   );
