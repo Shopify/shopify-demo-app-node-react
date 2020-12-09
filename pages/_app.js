@@ -2,7 +2,6 @@ import App from 'next/app';
 import Head from 'next/head';
 import { AppProvider } from '@shopify/polaris';
 import { Provider } from '@shopify/app-bridge-react';
-import Cookies from "js-cookie";
 import '@shopify/polaris/dist/styles.css';
 import translations from '@shopify/polaris/locales/en.json';
 import ApolloClient from 'apollo-boost';
@@ -17,8 +16,8 @@ const client = new ApolloClient({
 
 class MyApp extends App {
   render() {
-    const { Component, pageProps } = this.props;
-    const config = { apiKey: API_KEY, shopOrigin: Cookies.get("shopOrigin"), forceRedirect: true };
+    const { Component, pageProps, shopOrigin } = this.props;
+    const config = { apiKey: API_KEY, shopOrigin, forceRedirect: true };
 
     return (
       <React.Fragment>
@@ -36,6 +35,12 @@ class MyApp extends App {
         </Provider>
       </React.Fragment>
     );
+  }
+}
+
+MyApp.getInitialProps = async ({ctx}) => {
+  return {
+    shopOrigin: ctx.query.shop,
   }
 }
 

@@ -35,12 +35,8 @@ app.prepare().then(() => {
       secret: SHOPIFY_API_SECRET_KEY,
       scopes: ['read_products', 'write_products'],
       async afterAuth(ctx) {
-        const { shop, accessToken } = ctx.session;
-        ctx.cookies.set("shopOrigin", shop, {
-          httpOnly: false,
-          secure: true,
-          sameSite: 'none'
-        });
+        const { shop, accessToken } = ctx.state.shopify;
+
         const registration = await registerWebhook({
           address: `${HOST}/webhooks/products/create`,
           topic: 'PRODUCTS_CREATE',
@@ -54,7 +50,11 @@ app.prepare().then(() => {
         } else {
           console.log('Failed to register webhook', registration.result);
         }
-        await getSubscriptionUrl(ctx, accessToken, shop);
+
+        const returnUrl = `${HOST}?shop=${shop}`;
+        const subscriptionUrl = await getSubscriptionUrl(accessToken, shop, returnUrl);
+
+        ctx.redirect(subscriptionUrl);
       }
     })
   );
