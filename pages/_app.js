@@ -3,13 +3,12 @@ import Head from 'next/head';
 import { AppProvider } from '@shopify/polaris';
 import ClientRouter from '../components/ClientRouter';
 import { Provider } from '@shopify/app-bridge-react';
-import Cookies from "js-cookie";
 import '@shopify/polaris/styles.css';
 
 class MyApp extends App {
   render() {
-    const { Component, pageProps } = this.props;
-    const config = { apiKey: API_KEY, shopOrigin: Cookies.get("shopOrigin"), forceRedirect: true };
+    const { Component, pageProps, shopOrigin } = this.props;
+    const config = { apiKey: API_KEY, shopOrigin, forceRedirect: true };
 
     return (
       <React.Fragment>
@@ -25,6 +24,12 @@ class MyApp extends App {
         </Provider>
       </React.Fragment>
     );
+  }
+}
+
+MyApp.getInitialProps = async ({ctx}) => {
+  return {
+    shopOrigin: ctx.query.shop,
   }
 }
 
