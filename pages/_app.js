@@ -5,6 +5,8 @@ import ClientRouter from '../components/ClientRouter';
 import { Provider } from '@shopify/app-bridge-react';
 import '@shopify/polaris/styles.css';
 
+const API_KEY = JSON.stringify(process.env.SHOPIFY_API_KEY);
+
 class MyApp extends App {
   render() {
     const { Component, pageProps, shopOrigin } = this.props;
