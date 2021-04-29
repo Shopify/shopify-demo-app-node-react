@@ -1,0 +1,57 @@
+version: 2
+registries:
+  npm-registry-npm-shopify-io-node:
+    type: npm-registry
+    url: https://npm.shopify.io/node
+    token: "${{secrets.NPM_REGISTRY_NPM_SHOPIFY_IO_NODE_TOKEN}}"
+
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "10:00"
+    timezone: America/Toronto
+  open-pull-requests-limit: 99
+  reviewers:
+  - Shopify/platform-dev-tools-education
+  ignore:
+  - dependency-name: "@shopify/polaris"
+    versions:
+    - 6.0.1
+    - 6.1.0
+    - 6.2.1
+  - dependency-name: "@shopify/koa-shopify-auth"
+    versions:
+    - 4.0.1
+    - 4.0.2
+    - 4.0.3
+    - 4.1.1
+    - 4.1.2
+  - dependency-name: "@shopify/koa-shopify-graphql-proxy"
+    versions:
+    - 4.1.1
+    - 4.1.2
+    - 4.1.3
+  - dependency-name: eslint-plugin-react
+    versions:
+    - 7.23.1
+  - dependency-name: "@shopify/koa-shopify-webhooks"
+    versions:
+    - 2.6.1
+    - 2.6.2
+    - 2.6.3
+  - dependency-name: next
+    versions:
+    - 10.0.6
+    - 10.0.7
+    - 10.0.8
+    - 10.0.9
+  - dependency-name: "@shopify/app-bridge-react"
+    versions:
+    - 1.29.0
+  - dependency-name: "@shopify/app-bridge"
+    versions:
+    - 1.29.0
+  registries:
+  - npm-registry-npm-shopify-io-node
